@@ -6,16 +6,16 @@ export function ColorCards() {
   const [selected, setSelected] = useState<number | null>(null);
 
   const getCards = () => {
-    return [1,2,3,4,5].map((number) => (
+    return [1, 2, 3, 4, 5].map((number) => (
       <Grid xs key={number}>
-        <ColorCard selected={selected === number} setSelected={setSelected} index={number} />
+        <ColorCard
+          selected={selected === number}
+          setSelected={setSelected}
+          index={number}
+        />
       </Grid>
     ));
   };
 
-  return (
-    <Fragment>
-      {getCards()}
-    </Fragment>
-  );
-};
+  return <Fragment>{getCards()}</Fragment>;
+}

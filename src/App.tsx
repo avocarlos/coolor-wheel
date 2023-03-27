@@ -5,38 +5,45 @@ import Typography from "@mui/material/Typography";
 import Slider from "@mui/material/Slider";
 import Grid from "@mui/material/Unstable_Grid2";
 import { ColorProvider } from "./context/ColorContext";
-import ColorWheel from './components/ColorWheel';
-import ColorCards from "./components/ColorCards";
+import { ColorWheel } from "./components/ColorWheel";
+import { ColorCards } from "./components/ColorCards";
 import useChroma from "./hooks/useChroma";
 import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
+import { type EmotionJSX } from "@emotion/react/types/jsx-namespace";
 
-function App() {
+function App(): EmotionJSX.Element {
   const [chroma, setChroma] = useChroma();
   const [segments, setSegments] = useState(6);
   const [saturation, setSaturation] = useState(1);
   const [lightness, setLightness] = useState(50);
 
-  const onSegmentsChange = (_: Event, value: number | number[]) =>
-    setSegments(!Array.isArray(value) ? value : 0);
-  const onSaturationChange = (_: Event, value: number | number[]) =>
-    setSaturation(!Array.isArray(value) ? value : 0);
-  const onLightnessChange = (_: Event, value: number | number[]) =>
-    setLightness(!Array.isArray(value) ? value : 0);
+  const onSegmentsChange = (_: Event, value: number | number[]): void => setSegments(!Array.isArray(value) ? value : 0);
+  const onSaturationChange = (_: Event, value: number | number[]): void => setSaturation(!Array.isArray(value) ? value : 0);
+  const onLightnessChange = (_: Event, value: number | number[]): void => setLightness(!Array.isArray(value) ? value : 0);
 
-  const getColorWheels = () => {
+  const getColorWheels = (): EmotionJSX.Element[] => {
     const colorWheels = [];
     let size = 600;
     let sat = 90;
     for (let index = 0; index < saturation; index++) {
-      colorWheels.push(<ColorWheel key={index} index={index} segments={segments} size={size} saturation={sat} lightness={lightness} />);
+      colorWheels.push(
+        <ColorWheel
+          key={index}
+          index={index}
+          segments={segments}
+          size={size}
+          saturation={sat}
+          lightness={lightness}
+        />
+      );
       size -= 60;
       sat -= 10;
     }
     return colorWheels;
   };
 
-  const onReset = () => {
+  const onReset = (): void => {
     setSegments(6);
     setSaturation(1);
     setLightness(50);

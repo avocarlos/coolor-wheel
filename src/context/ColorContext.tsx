@@ -1,5 +1,5 @@
-import { Color } from 'chroma-js';
-import React, { Dispatch, SetStateAction } from 'react'
+import { type Color } from 'chroma-js';
+import React, { type Dispatch, type SetStateAction } from 'react'
 
 const ColorContext = React.createContext<{
     chroma?: Color | null;

@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import ColorCard from './ColorCard';
 
-function ColorCards() {
+export function ColorCards() {
   const [selected, setSelected] = useState<number | null>(null);
 
   const getCards = () => {
@@ -19,5 +19,3 @@ function ColorCards() {
     </Fragment>
   );
 };
-
-export default ColorCards;
